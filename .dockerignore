@@ -1,0 +1,3 @@
+crates/mandelcloud-ui/node_modules/
+target/
+terraform/

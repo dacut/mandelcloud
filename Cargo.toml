@@ -1,0 +1,11 @@
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+authors = ["David Cuthbert <dacut@kanga.org>"]
+edition = "2021"
+homepage = "https://github.com/dacut/mandelcloud"
+license = "Apache-2.0"
+repository = "https://github.com/dacut/mandelcloud.git"
+version = "0.1.0"
