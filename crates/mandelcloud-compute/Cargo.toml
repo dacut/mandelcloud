@@ -22,4 +22,6 @@ regex = "1.10.6"
 rug = { version = "1.26.1", default-features = false, features = ["complex", "serde", "std"] }
 serde = { version = "1.0.210", features = ["derive"] }
 serde_json = "1.0.128"
+sha3 = "0.10"
 tokio = { version = "1.40.0", features = ["macros", "rt-multi-thread", "signal", "test-util"] }
+hex = "0.4.3"

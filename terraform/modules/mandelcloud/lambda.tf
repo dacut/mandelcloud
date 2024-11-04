@@ -10,8 +10,9 @@ resource "aws_lambda_function" "compute_lambda" {
 
   environment {
     variables = {
-      S3_BUCKET = aws_s3_bucket.mandelpoints.bucket
-      S3_PREFIX = ""
+      S3_BUCKET        = aws_s3_bucket.mandelpoints.bucket
+      S3_IMAGES_PREFIX = "images/"
+      S3_POINTS_PREFIX = "points/"
     }
   }
 

@@ -7,6 +7,32 @@ use {
     },
 };
 
+/// The S3 bucket and prefix to use for storing computed points.
+#[derive(Debug)]
+pub struct S3Config {
+    pub bucket: String,
+    pub images_prefix: String,
+    pub points_prefix: String,
+}
+
+impl S3Config {
+    /// Returns an S3 config from the Lambda environment.
+    ///
+    /// # Panics
+    /// If the S3_BUCKET or S3_PREFIX environment variables are not set, this function will panic.
+    pub fn from_env() -> Self {
+        let bucket = std::env::var("S3_BUCKET").expect("S3_BUCKET environment variable not set");
+        let images_prefix = std::env::var("S3_IMAGES_PREFIX").expect("S3_IMAGES_PREFIX environment variable not set");
+        let points_prefix = std::env::var("S3_POINTS_PREFIX").expect("S3_POINTS_PREFIX environment variable not set");
+
+        Self {
+            bucket,
+            images_prefix,
+            points_prefix,
+        }
+    }
+}
+
 /// A type for serializing an arbitrary-precision float.
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "PascalCase")]
@@ -24,6 +50,8 @@ impl From<&Float> for SerFloat {
         }
     }
 }
+
+pub(crate) type BoxError = Box<dyn StdError + Send + Sync + 'static>;
 
 /// A type for serializing an arbitrary-precision complex number.
 #[derive(Clone, Debug, Deserialize, Serialize)]
